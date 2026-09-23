@@ -15,10 +15,10 @@ describe('AuthService', () => {
 
     fakeUserService = {
       find: (email: string) => {
-        const filteredUsers = users.filter(user => user.email === email);
+        const filteredUsers = users.filter((user) => user.email === email);
         return Promise.resolve(filteredUsers);
       },
-      create: (email: string, password: string) =>{
+      create: (email: string, password: string) => {
         const user = {
           id: Math.floor(Math.random() * 999999),
           email,
@@ -26,8 +26,7 @@ describe('AuthService', () => {
         } as User;
         users.push(user);
         return Promise.resolve(user);
-      }
-        
+      },
     };
 
     const module = await Test.createTestingModule({
@@ -76,7 +75,7 @@ describe('AuthService', () => {
   });
   it('returns a user if password is correct', async () => {
     await service.signup('asdf@asdf.com', 'password');
-      const user = await service.signin('asdf@asdf.com', 'password');
-      expect(user).toBeDefined();
+    const user = await service.signin('asdf@asdf.com', 'password');
+    expect(user).toBeDefined();
   });
 });
